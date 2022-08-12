@@ -28,7 +28,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.user.create');
     }
 
     /**
@@ -39,7 +39,17 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if($request->password == $request->repassword){
+            $data = new UserModel;
+            $data->name = $request->name;
+            $data->email = $request->email;
+            $data->password = md5($request->password);
+            $data->save();
+
+            return redirect('/backend/user');
+        }else{
+            return redirect()->back();
+        }
     }
 
     /**
@@ -65,6 +75,13 @@ class UserController extends Controller
         //
     }
 
+    public function edit_profile($id)
+    {
+        $user = UserModel::find($id);
+
+        return view('backend.profile.index', compact('user'));
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -85,6 +102,30 @@ class UserController extends Controller
         }else{
             return redirect('/backend/user');
         }
+    }
+
+    public function update_profile(Request $request)
+    {   
+        $data = UserModel::where('email', $request->email)->where('password', md5($request->password))->first();
+        if($data){
+            $update = UserModel::find($data->id);
+            $update->name = $request->name;
+            $update->bio = $request->bio;
+            $update->jenis_kelamin = $request->jenis_kelamin;
+            if($request->file('foto')){
+                $file= $request->file('foto');
+                $filename= $request->name.'-'.date('ymdhis').$file->getClientOriginalName();
+                $file-> move(public_path('public/foto_users'), $filename);
+                $update->foto = $filename;
+            }
+            $update->save();
+
+            return redirect('/backend/dashboard');
+        }else{
+            return redirect('/backend/profile/' %\Session::get('user_data')->id);
+        }
+        
+        return $request->all();
     }
 
     /**

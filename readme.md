@@ -8,3 +8,18 @@ Installation:
 5. php artisan serve
 
 enjoy code :D
+
+tugas
+
+1. buat table dokter
+   - id -> increments
+   - nama -> string
+   - spesialis -> string
+
+2. table pasien
+   - id -> increments
+   - nama -> string
+
+3. table obat
+   - id -> increments
+   - nama_obat -> string

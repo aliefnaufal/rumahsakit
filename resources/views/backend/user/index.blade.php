@@ -1,18 +1,34 @@
-@extends('layouts.app')
+@extends('layouts.backend')
 
-@section('content')
-<div class="container">
+@section('backend_dashboard')
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Users</h1>
+    </div>
+
+    <!-- Content Row -->
+
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    @include('backend.layout.menus')
-                </div>
 
-                <div class="panel-body">
-                    <h3>
-                        Users
-                    </h3>
+        <!-- Area Chart -->
+        <div class="col-xl-12 col-lg-12">
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div
+                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6 class="m-0 font-weight-bold text-primary">Users</h6>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="{{ route('user.create') }}" class="btn btn-primary">Create</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
                     <table class="table">
                         <thead>
                             <tr>

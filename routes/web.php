@@ -28,12 +28,23 @@ Route::group(['prefix' => 'backend'], function(){
     Route::get('/register', 'Backend\BackendController@Register')->name('backend.register');
     Route::post('/register-post', 'Backend\BackendController@RegisterPost')->name('backend.register.post');
 
-    Route::get('/dashboard', 'Backend\BackendController@Dashboard')->name('backend.dashboard');
+    Route::get('/dashboard', 'Backend\BackendController@Dashboard')->name('backend.dashboard')->middleware('backend_auth');
 
     Route::group(['prefix'=>'user'], function(){
-        Route::get('/', 'Backend\UserController@index')->name('user.index');
-        Route::get('/edit/{id}', 'Backend\UserController@show')->name('user.edit');
-        Route::post('/update', 'Backend\UserController@update')->name('user.update');
-        Route::get('/delete/{id}', 'Backend\UserController@destroy')->name('user.delete');
+        Route::get('/', 'Backend\UserController@index')->name('user.index')->middleware('backend_auth');
+        Route::get('/create', 'Backend\UserController@create')->name('user.create')->middleware('backend_auth');
+        Route::post('/store', 'Backend\UserController@store')->name('user.store')->middleware('backend_auth');
+        Route::get('/edit/{id}', 'Backend\UserController@show')->name('user.edit')->middleware('backend_auth');
+        Route::post('/update', 'Backend\UserController@update')->name('user.update')->middleware('backend_auth');
+        Route::get('/delete/{id}', 'Backend\UserController@destroy')->name('user.delete')->middleware('backend_auth');
     });
+
+    Route::group(['prefix'=>'profile'], function(){
+        Route::get('/{id}', 'Backend\UserController@edit_profile')->name('profile.edit_profile')->middleware('backend_auth');
+        Route::post('/update', 'Backend\UserController@update_profile')->name('profile.update_profile')->middleware('backend_auth');
+    });
+});
+
+Route::get('/testing_template', function(){
+    return view('layouts.backend');
 });

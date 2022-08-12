@@ -56,6 +56,12 @@ class BackendController extends Controller
     }
 
     public function Dashboard(){
-        return view('backend.layout.dashboard');
+        $user_count = UserModel::count();
+
+        $data = [
+            'user_count' => $user_count
+        ];
+
+        return view('backend.layout.dashboard', compact('data'));
     }
 }
