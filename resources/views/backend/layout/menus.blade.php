@@ -22,7 +22,10 @@
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="{{Route('user.index')}}">Users</a>
-            <!-- <a class="collapse-item" href="cards.html">Cards</a> -->
+            <a class="collapse-item" href="{{Route('dokter.index')}}">Dokter</a>
+            <a class="collapse-item" href="{{Route('pasien.index')}}">Pasien</a>
+            <a class="collapse-item" href="{{Route('obat.index')}}">Obat</a>
+            <a class="collapse-item" href="{{Route('spesialis.index')}}">Spesialis</a>
         </div>
     </div>
 </li>

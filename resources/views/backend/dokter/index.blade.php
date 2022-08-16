@@ -5,7 +5,7 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Users</h1>
+        <h1 class="h3 mb-0 text-gray-800">Dokter</h1>
     </div>
 
     <!-- Content Row -->
@@ -16,15 +16,14 @@
         <div class="col-xl-12 col-lg-12">
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
-                <div
-                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-6">
-                                <h3>List Users</h3>
+                                <h3>List Dokter</h3>
                             </div>
                             <div class="col-md-6">
-                                <a href="{{ route('user.create') }}" class="btn btn-primary float-right">Create</a>
+                                <a href="{{ route('dokter.create') }}" class="btn btn-primary float-right">Create</a>
                             </div>
                         </div>
                     </div>
@@ -44,14 +43,14 @@
                             @php
                                 $no=1
                             @endphp
-                            @foreach($data as $user)
+                            @foreach($data as $dokter)
                                 <tr>
                                     <td>{{$no}}</td>
-                                    <td>{{$user->name}}</td>
-                                    <td>{{$user->email}}</td>
+                                    <td>{{$dokter->name}}</td>
+                                    <td>{{$dokter->email}}</td>
                                     <td>
-                                        <a href="{{Route('user.edit', $user->id)}}">Edit</a>
-                                        <a href="{{Route('user.delete', $user->id)}}">Delete</a>
+                                        <a href="{{Route('dokter.edit', $dokter->id)}}">Edit</a>
+                                        <a href="{{Route('dokter.delete', $dokter->id)}}">Delete</a>
                                     </td>
                                 </tr>
                             @php

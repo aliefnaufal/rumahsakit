@@ -1,68 +1,32 @@
-@extends('layouts.app')
+@extends('layouts.backend_auth')
 
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
-
-                <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('backend.login.post') }}">
-                        {{ csrf_field() }}
-
-                        <div class="form-group">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" required autofocus>
-
-                                <!-- @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif -->
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                <!-- @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif -->
-                            </div>
-                        </div>
-
-                        <!-- <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
-                                    </label>
-                                </div>
-                            </div>
-                        </div> -->
-
-                        <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Login
-                                </button>
-
-                                <a class="btn btn-link" href="{{ route('backend.register') }}">
-                                    Didnt have an account? create here
-                                </a>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+@section('backend_auth')
+<div class="col-lg-12">
+    <div class="p-5">
+        <div class="text-center">
+            <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+        </div>
+        <form class="user" action="{{ route('backend.login.post') }}" method="POST">
+            {{ csrf_field() }}
+            <div class="form-group">
+                <input type="email" class="form-control form-control-user"
+                    id="exampleInputEmail" aria-describedby="emailHelp"
+                    placeholder="Enter Email Address..." name="email">
             </div>
+            <div class="form-group">
+                <input type="password" class="form-control form-control-user"
+                    id="exampleInputPassword" placeholder="Password" name="password">
+            </div>
+            <button type="submit" class="btn btn-primary btn-user btn-block">
+                Login
+            </button>
+        </form>
+        <hr>
+        <div class="text-center">
+            <!-- <a class="small" href="forgot-password.html">Forgot Password?</a> -->
+        </div>
+        <div class="text-center">
+            <a class="small" href="{{ route('backend.register') }}">Create an Account!</a>
         </div>
     </div>
 </div>
